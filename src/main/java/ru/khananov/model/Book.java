@@ -12,9 +12,9 @@ public class Book {
     @NotEmpty
     private String author;
 
-    @NotEmpty
     @Min(0)
     private int year;
+
     private Long personId;
 
     public Book() {

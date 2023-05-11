@@ -1,7 +1,7 @@
 package ru.khananov.model;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.sql.Date;
 
 public class Person {
     private Long id;
@@ -9,7 +9,7 @@ public class Person {
     @NotEmpty
     private String fio;
 
-    @NotEmpty
+//    @NotEmpty
     private Date birthDate;
 
     public Person() {

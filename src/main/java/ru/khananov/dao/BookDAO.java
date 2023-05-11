@@ -18,13 +18,13 @@ public class BookDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> findAll() {
-        return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Person.class));
+    public List<Book> findAll() {
+        return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
     }
 
-    public Person findById(Long id) {
+    public Book findById(Long id) {
         return jdbcTemplate.query("SELECT * FROM book WHERE id = ?",
-                new BeanPropertyRowMapper<>(Person.class), id).stream().findAny().orElse(null);
+                new BeanPropertyRowMapper<>(Book.class), id).stream().findAny().orElse(null);
     }
 
     public void save(Book book) {
@@ -33,7 +33,7 @@ public class BookDAO {
     }
 
     public void update(Book updateBook) {
-        jdbcTemplate.update("UPDATE book SET (name, author, year, person_id) = (?, ?, ?, ?)) WHERE id = ?",
+        jdbcTemplate.update("UPDATE book SET (name, author, year) = (?, ?, ?) WHERE id = ?",
                 updateBook.getName(), updateBook.getAuthor(), updateBook.getYear(), updateBook.getPersonId());
     }
 
