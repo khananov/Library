@@ -1,20 +1,30 @@
 package ru.khananov.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 public class Book {
     private Long id;
+
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String author;
+
+    @NotEmpty
+    @Min(0)
     private int year;
-    private Person person;
+    private Long personId;
 
     public Book() {
     }
 
-    public Book(String name, String author, int year, Person person) {
+    public Book(String name, String author, int year, Long personId) {
         this.name = name;
         this.author = author;
         this.year = year;
-        this.person = person;
+        this.personId = personId;
     }
 
     public Long getId() {
@@ -49,11 +59,22 @@ public class Book {
         this.year = year;
     }
 
-    public Person getPerson() {
-        return person;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", year=" + year +
+                ", person_id=" + personId +
+                '}';
     }
 }

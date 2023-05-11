@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+  <p th:text="${person.getId()}"></p>
+  <p th:text="${person.getFio()}"></p>
+  <p th:text="${person.getBirthDate()}"></p>
+
+  <br/>
+
+  <form th:method="get" th:action="@{/people/{id}/edit (id=${person.getId()})}">
+      <input type="submit" value="Редактировать!">
+  </form>
+
+  <br/>
+
+  <form th:method="delete" th:action="@{/people/{id} (id=${person.getId()})}">
+      <input type="submit" value="Удалить!">
+  </form>
+</body>
+</html>

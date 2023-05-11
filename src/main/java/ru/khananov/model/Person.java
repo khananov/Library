@@ -1,18 +1,23 @@
 package ru.khananov.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class Person {
     private Long id;
+
+    @NotEmpty
     private String fio;
-    private Date birth_date;
+
+    @NotEmpty
+    private Date birthDate;
 
     public Person() {
     }
 
-    public Person(String fio, Date birth_date) {
+    public Person(String fio, Date birthDate) {
         this.fio = fio;
-        this.birth_date = birth_date;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -31,11 +36,20 @@ public class Person {
         this.fio = fio;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(Date birth_date) {
+        this.birthDate = birth_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", fio='" + fio + '\'' +
+                ", birth_date=" + birthDate +
+                '}';
     }
 }
