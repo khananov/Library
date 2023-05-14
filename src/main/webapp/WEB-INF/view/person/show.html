@@ -5,10 +5,20 @@
     <title>Show</title>
 </head>
 <body>
-  <p th:text="${person.getId()}"></p>
-  <p th:text="${person.getFio()}"></p>
-  <p th:text="${person.getBirthDate()}"></p>
+  <p th:text="${person.getFio()} + ', ' + ${person.getBirthDate()}"></p>
 
+  <div th:if="${books.isEmpty()}">
+    <h4>Человек пока не взял книгу</h4>
+  </div>
+
+  <div th:if="${!books.isEmpty()}">
+      <h3>Книги:</h3>
+      <table th:each="book : ${books}">
+          <tr th:text="${book.getName() + ' ' + book.getYear()}">book</tr>
+      </table>
+  </div>
+
+  <hr/>
   <br/>
 
   <form th:method="get" th:action="@{/people/{id}/edit (id=${person.getId()})}">

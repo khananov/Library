@@ -8,6 +8,7 @@ import ru.khananov.model.Book;
 import ru.khananov.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -34,6 +35,12 @@ public class BookDAO {
 
     public void editPerson(Long bookId, Long personId) {
         jdbcTemplate.update("UPDATE book SET person_id = ? WHERE id = ?", personId, bookId);
+    }
+
+    public Optional<Person> getOwnerBook(Long id) {
+        return jdbcTemplate.query("SELECT person.id, fio, birth_date FROM person " +
+                "JOIN book ON person.id = book.person_id WHERE book.id = ?", new BeanPropertyRowMapper<>(Person.class), id)
+                .stream().findAny();
     }
 
     public void deleteOwnerOfBook(Long id) {

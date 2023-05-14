@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.khananov.dao.BookDAO;
 import ru.khananov.dao.PersonDAO;
 import ru.khananov.model.Person;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/people")
@@ -29,6 +31,7 @@ public class PeopleController {
     @GetMapping("{id}")
     public String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("person", personDAO.findById(id));
+        model.addAttribute("books", personDAO.getBooksByPersonId(id));
         return "person/show";
     }
 

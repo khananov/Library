@@ -9,7 +9,6 @@ public class Person {
     @NotEmpty
     private String fio;
 
-//    @NotEmpty
     private Date birthDate;
 
     public Person() {

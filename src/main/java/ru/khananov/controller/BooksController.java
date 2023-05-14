@@ -33,8 +33,8 @@ public class BooksController {
     @GetMapping("{id}")
     public String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("book", bookDAO.findById(id));
-        model.addAttribute("person", new Person());
         model.addAttribute("people", personDAO.findAll());
+        model.addAttribute("owner", bookDAO.getOwnerBook(id).orElse(new Person()));
         return "book/show";
     }
 
@@ -67,14 +67,14 @@ public class BooksController {
         return "redirect:/books";
     }
 
-    @PatchMapping("{id}/set/person")
-    public String setPerson(@PathVariable("id") Long id, @ModelAttribute("person") Person person) {
+    @PatchMapping("{id}/assign")
+    public String assign(@PathVariable("id") Long id, @ModelAttribute("person") Person person) {
         bookDAO.editPerson(id, person.getId());
-        return "redirect:/books/" + id;
+        return "redirect:/books/";
     }
 
-    @PatchMapping("{id}/free/book")
-    public String freeBook(@PathVariable("id") Long id) {
+    @PatchMapping("{id}/release")
+    public String release(@PathVariable("id") Long id) {
         bookDAO.deleteOwnerOfBook(id);
         return "redirect:/books/" + id;
     }
