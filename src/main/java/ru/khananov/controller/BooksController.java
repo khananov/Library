@@ -67,10 +67,16 @@ public class BooksController {
         return "redirect:/books";
     }
 
-    @PatchMapping("/{id}/set/person")
+    @PatchMapping("{id}/set/person")
     public String setPerson(@PathVariable("id") Long id, @ModelAttribute("person") Person person) {
         bookDAO.editPerson(id, person.getId());
-        return "redirect:/books";
+        return "redirect:/books/" + id;
+    }
+
+    @PatchMapping("{id}/free/book")
+    public String freeBook(@PathVariable("id") Long id) {
+        bookDAO.deleteOwnerOfBook(id);
+        return "redirect:/books/" + id;
     }
 
     @DeleteMapping("{id}")

@@ -7,13 +7,21 @@
 <body>
   <p th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"></p>
 
-  <form th:method="patch" th:action="@{/books/{id}/set/person (id=${book.getId()})}">
+  <form th:method="patch" th:action="@{/books/{id}/set/person (id=${book.getId()})}"
+        th:if="${book.getPersonId() == null}">
+      <p>Эта книга свободна. Кому назначить ее?</p>
       <label for="people">Выберите человка</label>
-      <select th:object="${person}" th:field="*{id}" id="people">
-          <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFio()}"></option>
-      </select>
+        <select th:object="${person}" th:field="*{id}" id="people">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFio()}"></option>
+        </select>
 
       <input type="submit" value="Назначить книгу">
+  </form>
+
+  <form th:method="patch" th:action="@{/books/{id}/free/book (id=${book.getId()})}"
+        th:if="${book.getPersonId() != null}">
+      <p>Книга сейчас занята</p>
+      <input type="submit" value="Освободить книгу">
   </form>
 
   <br/>
