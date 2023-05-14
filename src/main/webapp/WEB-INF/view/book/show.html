@@ -5,12 +5,19 @@
     <title>Show</title>
 </head>
 <body>
-  <p th:text="${book.getId()}"></p>
-  <p th:text="${book.getName()}"></p>
-  <p th:text="${book.getAuthor()}"></p>
-  <p th:text="${book.getYear()}"></p>
+  <p th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"></p>
+
+  <form th:method="patch" th:action="@{/books/{id}/set/person (id=${book.getId()})}">
+      <label for="people">Выберите человка</label>
+      <select th:object="${person}" th:field="*{id}" id="people">
+          <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFio()}"></option>
+      </select>
+
+      <input type="submit" value="Назначить книгу">
+  </form>
 
   <br/>
+  <hr/>
 
   <form th:method="get" th:action="@{/books/{id}/edit (id=${book.getId()})}">
       <input type="submit" value="Редактировать!">
