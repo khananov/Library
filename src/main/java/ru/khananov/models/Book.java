@@ -1,4 +1,4 @@
-package ru.khananov.model;
+package ru.khananov.models;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;

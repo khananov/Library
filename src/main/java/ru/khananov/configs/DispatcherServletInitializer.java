@@ -1,4 +1,4 @@
-package ru.khananov.config;
+package ru.khananov.configs;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;

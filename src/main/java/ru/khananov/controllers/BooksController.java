@@ -1,4 +1,4 @@
-package ru.khananov.controller;
+package ru.khananov.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.khananov.dao.BookDAO;
 import ru.khananov.dao.PersonDAO;
-import ru.khananov.model.Book;
-import ru.khananov.model.Person;
+import ru.khananov.models.Book;
+import ru.khananov.models.Person;
 
 import javax.validation.Valid;
 
