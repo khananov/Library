@@ -6,9 +6,9 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
-    <label for="fio">Введите имя</label>
-    <input type="text" th:field="*{fio}" id="fio"/>
-    <div style="color:red" th:if="${#fields.hasErrors('fio')}" th:errors="*{fio}"></div>
+    <label for="name">Введите имя</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
     <br/>
 
     <label for="birthDate">Введите дату рождения</label>

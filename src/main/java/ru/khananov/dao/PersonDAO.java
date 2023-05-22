@@ -28,13 +28,13 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO person (fio, birth_date) VALUES (?, ?)",
-                person.getFio(), person.getBirthDate());
+        jdbcTemplate.update("INSERT INTO person (name, birth_date) VALUES (?, ?)",
+                person.getName(), person.getBirthDate());
     }
 
     public void update(Person updatePerson) {
-        jdbcTemplate.update("UPDATE person SET (fio, birth_date) = (?, ?) WHERE id = ?",
-                updatePerson.getFio(), updatePerson.getBirthDate(), updatePerson.getId());
+        jdbcTemplate.update("UPDATE person SET (name, birth_date) = (?, ?) WHERE id = ?",
+                updatePerson.getName(), updatePerson.getBirthDate(), updatePerson.getId());
     }
 
     public List<Book> getBooksByPersonId(Long id) {

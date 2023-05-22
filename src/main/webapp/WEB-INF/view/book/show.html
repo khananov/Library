@@ -12,7 +12,7 @@
       <p>Эта книга свободна. Кому назначить ее?</p>
       <label for="people">Выберите человка</label>
         <select th:object="${owner}" th:field="*{id}" id="people">
-            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFio()}"></option>
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
         </select>
 
       <input type="submit" value="Назначить книгу">
@@ -20,7 +20,7 @@
 
   <form th:method="patch" th:action="@{/books/{id}/release (id=${book.getId()})}"
         th:if="${owner.getId() != null}">
-          <p th:text="'Книга сейчас у ' + ${owner.getFio()}"></p>
+          <p th:text="'Книга сейчас у ' + ${owner.getName()}"></p>
       <input type="submit" value="Вернуть книгу">
   </form>
 

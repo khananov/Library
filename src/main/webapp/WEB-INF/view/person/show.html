@@ -5,7 +5,7 @@
     <title>Show</title>
 </head>
 <body>
-  <p th:text="${person.getFio()} + ', ' + ${person.getBirthDate()}"></p>
+  <p th:text="${person.getName()} + ', ' + ${person.getBirthDate()}"></p>
 
   <div th:if="${books.isEmpty()}">
     <h4>Человек пока не взял книгу</h4>

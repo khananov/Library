@@ -1,21 +1,27 @@
 package ru.khananov.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
 
+@Entity
+@Table(name = "person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "")
     private Long id;
 
     @NotEmpty
-    private String fio;
+    private String name;
 
     private Date birthDate;
 
     public Person() {
     }
 
-    public Person(String fio, Date birthDate) {
-        this.fio = fio;
+    public Person(String name, Date birthDate) {
+        this.name = name;
         this.birthDate = birthDate;
     }
 
@@ -27,12 +33,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getName() {
+        return name;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setName(String fio) {
+        this.name = fio;
     }
 
     public Date getBirthDate() {
@@ -47,7 +53,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", fio='" + fio + '\'' +
+                ", name='" + name + '\'' +
                 ", birth_date=" + birthDate +
                 '}';
     }
