@@ -3,19 +3,25 @@ package ru.khananov.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "")
+    @Column(name = "id")
     private Long id;
 
     @NotEmpty
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "birth_date")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
 
     public Person() {
     }
