@@ -28,16 +28,13 @@ public class Book {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
-    private Long personId;
-
     public Book() {
     }
 
-    public Book(String name, String author, int year, Long personId) {
+    public Book(String name, String author, int year) {
         this.name = name;
         this.author = author;
         this.year = year;
-        this.personId = personId;
     }
 
     public Long getId() {
@@ -72,12 +69,12 @@ public class Book {
         this.year = year;
     }
 
-    public Long getPersonId() {
-        return personId;
+    public Person getOwner() {
+        return owner;
     }
 
-    public void setPersonId(Long personId) {
-        this.personId = personId;
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -87,7 +84,7 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", year=" + year +
-                ", person_id=" + personId +
+                ", person_id=" + owner.getId() +
                 '}';
     }
 }

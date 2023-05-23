@@ -55,6 +55,14 @@ public class Person {
         this.birthDate = birth_date;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
