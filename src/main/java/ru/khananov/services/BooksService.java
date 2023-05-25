@@ -1,8 +1,6 @@
 package ru.khananov.services;
 
 import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +26,11 @@ public class BooksService {
 
     public List<Book> findAll() {
         return booksRepository.findAll();
+    }
+
+    public List<Book> findAllSortedByYear(boolean isSorting) {
+        if (isSorting) return booksRepository.findByOrderByYear();
+        else return findAll();
     }
 
     public Book findById(Long id) {
