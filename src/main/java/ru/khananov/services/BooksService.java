@@ -2,6 +2,8 @@ package ru.khananov.services;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.khananov.models.Book;
@@ -9,6 +11,7 @@ import ru.khananov.models.Person;
 import ru.khananov.repositories.BooksRepository;
 import ru.khananov.repositories.PeopleRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,13 +27,24 @@ public class BooksService {
         this.peopleRepository = peopleRepository;
     }
 
-    public List<Book> findAll() {
-        return booksRepository.findAll();
+    public List<Book> findAll(Integer page, Integer booksPerPage, boolean isSorting) {
+        if (page != null && booksPerPage != null) {
+            if (isSorting) {
+                return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year"))).getContent();
+            } else {
+                return booksRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+            }
+        } else {
+            if (isSorting) {
+                return booksRepository.findAll(Sort.by("year"));
+            } else {
+                return booksRepository.findAll();
+            }
+        }
     }
 
-    public List<Book> findAllSortedByYear(boolean isSorting) {
-        if (isSorting) return booksRepository.findByOrderByYear();
-        else return findAll();
+    public List<Book> findByName(String name) {
+        return (name != null) ? booksRepository.findByNameStartingWith(name) : new ArrayList<>();
     }
 
     public Book findById(Long id) {

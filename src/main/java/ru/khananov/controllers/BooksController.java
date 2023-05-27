@@ -25,8 +25,11 @@ public class BooksController {
     }
 
     @GetMapping()
-    public String index(@RequestParam(name = "sort_by_year", required = false) boolean isSorting, Model model) {
-        model.addAttribute("books", booksService.findAllSortedByYear(isSorting));
+    public String index(@RequestParam(name = "page", required = false) Integer page,
+                        @RequestParam(name = "books_per_page", required = false) Integer booksPerPage,
+                        @RequestParam(name = "sort_by_year", required = false) boolean isSorting,
+                        Model model) {
+        model.addAttribute("books", booksService.findAll(page, booksPerPage, isSorting));
         return "book/index";
     }
 
@@ -84,5 +87,11 @@ public class BooksController {
     public String delete(@PathVariable("id") Long id) {
         booksService.remove(id);
         return "redirect:/books";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam(name = "query", required = false) String query, Model model) {
+        model.addAttribute("books", booksService.findByName(query));
+        return "book/search";
     }
 }
